@@ -18,6 +18,7 @@ public class Main {
   Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
   TranspositionEncrypter transEncrypter = new TranspositionEncrypter();
   TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
+  Console console = new Console();
 
 /*   public Main() {
     TextReader englishDictionary = new TextReader("/src/main/java/security_1dv700_a1/fileReader/englishWords.txt");
@@ -30,7 +31,7 @@ public class Main {
     int shiftKeyEncryption = shiftKey;
     
     String cipherText = caesarEncrypter.encryptPlainText(shiftKeyEncryption, plainText);
-    printCipherText(cipherText);
+    console.printCaesarEncryptedText(cipherText);
   }
 
   private void printCipherText(String cipherText) {
@@ -43,7 +44,7 @@ public class Main {
     int shiftKey = rotation;
     ArrayList<String> caesarString = decryptCipherText(shiftKey, this.encryptedText);
     
-    printDecryptedText(caesarString);
+    console.printCaesarDecryptedText(caesarString);
   }
 
   private ArrayList<String> decryptCipherText(int cycles, String encodedText) {
@@ -64,15 +65,21 @@ public class Main {
   }
 
   public void runTranspositionEncrypter(int key) {
-    TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
-    String plainText = notSoSecretMessage.readFromFile().toLowerCase();
-    transEncrypter.runEncrypter(key, plainText);
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
+    String plainText = textReader.readFromFile().toLowerCase();
+    String cipherText = transEncrypter.runEncrypter(key, plainText);
+    textReader.writeToFile(cipherText);
+    console.printTranspositionEncryptedText(cipherText);
+    runTranspositionDecrypter(key, cipherText);
+
   }
 
-  public void runTranspositionDecrypter(int key) {
-    TextReader topSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/topSecretMessage.txt");
-    this.encryptedText = topSecretMessage.readFromFile().toLowerCase();
-    transDecrypter.runTransDecrypter(key, encryptedText);
+  public void runTranspositionDecrypter(int key, String text) {
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
+    this.encryptedText = textReader.readFromFile().toLowerCase();
+    String decryptedMessage = transDecrypter.runTransDecrypter(key, text);
+    textReader.writeToFile(decryptedMessage);
+    console.printTranspositionDecryptedText(decryptedMessage);
   }
 
 

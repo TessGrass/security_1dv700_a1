@@ -2,11 +2,12 @@ package security_1dv700_a1.transpositionCipher;
 
 import java.util.ArrayList;
 
+import security_1dv700_a1.Console;
+
 public class TranspositionEncrypter {
 
-  public void runEncrypter(int theKey, String theNotSoSecretMessage) {
+  public String runEncrypter(int theKey, String theNotSoSecretMessage) {
     ArrayList<Character> charMessage = new ArrayList<Character>();
-    TranspositionDecrypter decrypter = new TranspositionDecrypter();
     String plainText = theNotSoSecretMessage;
     int key = theKey;
     int count = 0;
@@ -17,13 +18,14 @@ public class TranspositionEncrypter {
       count++;
     }
     
-    rows = (count / key) + 1;
+    if((count / key) % 2 != 0) {
+      rows = (count / key) + 1; 
+    } else {
+      rows = (count / key);
+    }
     
     String cipherText = encryptMessage(key, rows, charMessage);
-    System.out.println("---Encrypted message-----");
-    System.out.println(cipherText);
-    System.out.println("---End of Encrypted message---");
-    decrypter.runTransDecrypter(key, cipherText);
+    return cipherText;
     
   }   
 

@@ -46,10 +46,10 @@ public class Menu {
        main.runTranspositionEncrypter(shiftKey);
     }
 
-    if (input.equals("4")) {
+/*     if (input.equals("4")) {
       int shiftKey = printEnterKeyTransposition();
        main.runTranspositionDecrypter(shiftKey);
-    }
+    } */
 
     if (input.equals("5")) {
       String messageToBeHashed = printEnterMessage();
@@ -58,7 +58,7 @@ public class Menu {
 
     if (input.equals("6")) {
       String message = "Testing the hash string!";
-      hashTester.similarString(message);
+      hashTester.testWithSimilarString(message);
     }
 }
 

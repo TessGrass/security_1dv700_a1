@@ -8,7 +8,7 @@ import java.util.Random;
 public class HashTester {
   Hash hasher = new Hash();
 
-  public void similarString(String message) {
+  public void testWithSimilarString(String message) {
     ArrayList<String> result = new ArrayList<String>();
     String sentence = message;
     String letter = "a";
@@ -32,7 +32,7 @@ public class HashTester {
     int numberOfStrings = 0;
 
     for (int i = 0; i < 100; i++) {
-      String message = randomString();
+      String message = generateRandomString();
       String hashString = hasher.hashString(message);
       int hash = Integer.valueOf(hashString);
 
@@ -44,7 +44,7 @@ public class HashTester {
     printValidateHashLengthResult(numberOfErrors, numberOfStrings);
   }
 
-  private String randomString () {
+  private String generateRandomString () {
     Random random = new Random();
     int low = 0;
     int high = 126;

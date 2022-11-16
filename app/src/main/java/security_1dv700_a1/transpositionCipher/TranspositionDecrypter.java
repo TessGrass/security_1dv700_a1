@@ -3,7 +3,8 @@ package security_1dv700_a1.transpositionCipher;
 import java.util.ArrayList;
 
 public class TranspositionDecrypter {
-  public void runTransDecrypter(int key, String secretMessage) {
+
+  public String runTransDecrypter(int key, String secretMessage) {
     ArrayList<Character> messageArr = new ArrayList<Character>();
     String cipherText = secretMessage;
     int columns = key;
@@ -46,7 +47,6 @@ public class TranspositionDecrypter {
         decryptedMessage += twoArr[i][j];
       }
     }
-  System.out.println("-----Decrypted message-----" + "\n" + decryptedMessage);
-  System.out.println("-----End of Decrypted message------");
+    return decryptedMessage;
   }
 }
