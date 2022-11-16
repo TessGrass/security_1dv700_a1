@@ -1,4 +1,4 @@
-package security_1dv700_a1.encrypter;
+package security_1dv700_a1.caesarCipher;
 
 public class CaesarEncrypter implements Encrypter<Integer> {
   public static final String ENGLISHALPHABET = "abcdefghijklmnopqrstuvwxyz";

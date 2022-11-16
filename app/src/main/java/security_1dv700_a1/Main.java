@@ -1,9 +1,9 @@
 package security_1dv700_a1;
 
-import security_1dv700_a1.encrypter.CaesarEncrypter;
-import security_1dv700_a1.encrypter.CaesarDecrypter;
-import security_1dv700_a1.encrypter.Encrypter;
-import security_1dv700_a1.encrypter.Decrypter;
+import security_1dv700_a1.caesarCipher.CaesarDecrypter;
+import security_1dv700_a1.caesarCipher.CaesarEncrypter;
+import security_1dv700_a1.caesarCipher.Decrypter;
+import security_1dv700_a1.caesarCipher.Encrypter;
 import security_1dv700_a1.fileReader.TextReader;
 
 import java.util.ArrayList;
