@@ -17,14 +17,14 @@ public class Main {
   Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
 
   public Main() {
-    TextReader englishDictionary = new TextReader("/src/main/java/fileReader/englishWords.txt");
-    TextReader topSecretMessage = new TextReader("/src/main/java/fileReader/topSecretMessage.txt");
+    TextReader englishDictionary = new TextReader("/src/main/java/security_1dv700_a1/fileReader/englishWords.txt");
+    TextReader topSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/topSecretMessage.txt");
     this.encryptedText = topSecretMessage.readFromFile().toLowerCase();
     this.engDictionary = englishDictionary.readFromFile().split("\n");
   }
 
   public String runEncrypter(int shiftKey) {
-    TextReader notSoSecretMessage = new TextReader("/src/main/java/fileReader/notSoSecretMessage.txt");
+    TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
     this.plainText = notSoSecretMessage.readFromFile().toLowerCase();
     int shiftKeyEncryption = shiftKey;
     

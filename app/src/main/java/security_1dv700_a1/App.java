@@ -5,7 +5,7 @@ package security_1dv700_a1;
 
 public class App {
     public String getGreeting() {
-        return "Hello World!";
+        return "";
     }
 
     public static void main(String[] args) {
