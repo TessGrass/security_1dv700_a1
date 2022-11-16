@@ -1,7 +1,6 @@
 package security_1dv700_a1.hash;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -26,15 +25,15 @@ public class HashTester {
     return randomString;
   }
 
-  public void similarString() {
-    ArrayList<Integer> result = new ArrayList<Integer>();
-    String sentence = "This is my sentence";
-    int max = 1000;
+  public void similarString(String message) {
+    ArrayList<String> result = new ArrayList<String>();
+    String sentence = message;
+    int max = 10;
     String letter = "a";
 
     for (int i = 0; i < max; i++) {
-/*       sentence += letter; */
-      int hash = hasher.hashString(sentence);
+      sentence += letter;
+      String hash = hasher.hashString(sentence);
       result.add(hash);
     }
    statisticalOverview(result);
@@ -47,7 +46,8 @@ public class HashTester {
 
     for (int i = 0; i < 50; i++) {
       String message = randomString();
-      int hash = hasher.hashString(message);
+      String hashString = hasher.hashString(message);
+      int hash = Integer.valueOf(hashString);
 
     if(hash < errorMin || hash > errorMax) {
       numberOfErrors++;
@@ -56,10 +56,10 @@ public class HashTester {
   System.out.println(numberOfErrors);
   }
 
-  private void statisticalOverview(ArrayList<Integer> result) {
-      Map<Integer, Integer> map = new HashMap<>();
+  private void statisticalOverview(ArrayList<String> result) {
+      Map<String, Integer> map = new HashMap<>();
       /* Collections.sort(result); */
-          for (Integer hash : result) {
+          for (String hash : result) {
 /*             System.out.println(String.format("%03d", hash)); */
             map.put(hash, map.getOrDefault(hash, 0) + 1);
 /*             map.put(hash, 1); */

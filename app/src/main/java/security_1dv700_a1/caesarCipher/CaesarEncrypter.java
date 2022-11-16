@@ -10,7 +10,7 @@ public class CaesarEncrypter implements Encrypter<Integer> {
     String cipherText = "";
 
     for (int i = 0; i < plainText.length() - 1; i++) {
-      if(!isCharInString(plainText.charAt(i))) {
+      if (!isCharInString(plainText.charAt(i))) {
         cipherText += plainText.charAt(i);
       } else {
         int indexOfPlainLetter = ENGLISHALPHABET.indexOf(plainText.charAt(i));
@@ -19,7 +19,6 @@ public class CaesarEncrypter implements Encrypter<Integer> {
         cipherText += replaceValue;
       }
     }
-
     return cipherText;
   }
 
@@ -40,15 +39,12 @@ public class CaesarEncrypter implements Encrypter<Integer> {
     String cipherText = "";
 
     for (int i = 0; i < plainText.length() - 1; i++) {
-   // plainText.charAt(i) = letters in the incoming plainText
       int indexOfPlainLetter = plainText.charAt(i);
       int indexOfCipherLetter = (indexOfPlainLetter + shiftKey) % modulus;
-
       char replaceValue = ((char)(int)indexOfCipherLetter);
-      cipherText += replaceValue;
 
+      cipherText += replaceValue;
     }
     return cipherText;
   }
-
 }

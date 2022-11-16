@@ -11,13 +11,15 @@ public class Menu {
   
   public void mainMenu() {
     System.out.println();
-    /* hash.hashString(); */
+    String mess = "Tesss";
+    hash.hashString(mess);
     System.out.println("\n" + "== Caesar-Cipher Main Menu ==");
     System.out.println("1. Encrypt Text - Caesar Cipher");
     System.out.println("2. Decrypt Text - Caesar Cipher");
     System.out.println("3. Encrypt Text - Transposition Cipher");
     System.out.println("4. Decrypt Text - Transposition Cipher");
     System.out.println("5. Hash Text");
+    System.out.println("6. Test Hash");
     System.out.println("Q. Quit");
   
     System.out.print("\n" + "Input choice: ");
@@ -56,7 +58,8 @@ public class Menu {
     }
 
     if (input.equals("6")) {
-      hashTester.similarString();
+      String message = "tess";
+      hashTester.similarString(message);
     }
 }
 
@@ -77,16 +80,16 @@ public class Menu {
     }
     return shiftKey;
   }
-
+  
   private Boolean validateInput(int number, boolean range) {
-      int minKey = 2;
-      int maxKey = 11;
-      if(number > minKey && number < maxKey) {
-        return false;
-      }
-      return true;
+    int minKey = 2;
+    int maxKey = 11;
+    if(number > minKey && number < maxKey) {
+      return false;
+    }
+    return true;
   }
-
+  
   private String printEnterMessage() {
     System.out.print("Enter Your Message: ");
     String messageToBeHashed = scan.nextLine();
