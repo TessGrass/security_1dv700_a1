@@ -23,22 +23,33 @@ public class Main {
     this.engDictionary = englishDictionary.readFromFile().split("\n");
   }
 
-  public String runEncrypter(int shiftKey) {
+  public void runCaesarEncrypter(int shiftKey) {
     TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
     this.plainText = notSoSecretMessage.readFromFile().toLowerCase();
     int shiftKeyEncryption = shiftKey;
     
     String cipherText = caesarEncrypter.encryptPlainText(shiftKeyEncryption, this.plainText);
-    return cipherText;
+    printCipherText(cipherText);
   }
 
+  private void printCipherText(String cipherText) {
+    System.out.println("\n" + "Encrypted message: " + cipherText + "\n"); 
+  }
 
-  public ArrayList<String> runDecrypter(int rotation) {
-    int keyRotation = rotation;
-    ArrayList<String> caesarString = decryptCipherText(keyRotation, this.encryptedText);
+  public void runCaesarDecrypter(int rotation) {
+    int shiftKey = rotation;
+    ArrayList<String> caesarString = decryptCipherText(shiftKey, this.encryptedText);
     
     printDecryptedText(caesarString);
-    return caesarString;
+/*     return caesarString; */
+  }
+
+  private ArrayList<String> decryptCipherText(int cycles, String encodedText) {
+    ArrayList<String> decryptedWords = new ArrayList<String>();
+    for (int i = 1; i <= cycles; i++) {
+      decryptedWords.add(caesarDecrypter.decryptCipherText(i, encodedText));
+    }
+    return decryptedWords;
   }
 
   public void printDecryptedText(ArrayList<String> decryptedText) {
@@ -48,14 +59,6 @@ public class Main {
       System.out.println("Key " + shiftKeyDecryption + ": " + s);
        shiftKeyDecryption++;
       }
-
-  }
-  private ArrayList<String> decryptCipherText(int cycles, String encodedText) {
-    ArrayList<String> decryptedWords = new ArrayList<String>();
-    for (int i = 1; i <= cycles; i++) {
-      decryptedWords.add(caesarDecrypter.decryptCipherText(i, encodedText));
-    }
-    return decryptedWords;
   }
 
   private boolean isWordValid(String sentence) {

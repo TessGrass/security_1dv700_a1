@@ -3,8 +3,8 @@ package security_1dv700_a1.encrypter;
 public class CaesarDecrypter implements Decrypter<Integer> {
   public static final String ENGLISHALPHABET = "abcdefghijklmnopqrstuvwxyz";
   
-
-  public String decryptCipherText2(Integer decryptionKey, String cipherText) {
+  @Override
+  public String decryptCipherText(Integer decryptionKey, String cipherText) {
     cipherText = cipherText.toLowerCase();
     int modulus = 26;
     String plainText = "";
@@ -38,8 +38,8 @@ public boolean isCharInString(char character) {
   }
   return false;
 }
-@Override
-public String decryptCipherText(Integer decryptionKey, String cipherText) {
+
+public String decryptCipherText2(Integer decryptionKey, String cipherText) {
   cipherText = cipherText.toLowerCase();
   int modulus = 256;
   String plainText = "";

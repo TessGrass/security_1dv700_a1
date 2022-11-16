@@ -3,8 +3,8 @@ package security_1dv700_a1.encrypter;
 public class CaesarEncrypter implements Encrypter<Integer> {
   public static final String ENGLISHALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
-
-  public String encryptPlainText2(Integer shiftKey, String plainText) {
+  @Override
+  public String encryptPlainText(Integer shiftKey, String plainText) {
     plainText = plainText.toLowerCase();
     int modulus = 26;
     String cipherText = "";
@@ -33,8 +33,8 @@ public class CaesarEncrypter implements Encrypter<Integer> {
     }
     return false;
   }
-  @Override
-  public String encryptPlainText(Integer shiftKey, String plainText) {
+
+  public String encryptPlainText2(Integer shiftKey, String plainText) {
     plainText = plainText.toLowerCase();
     int modulus = 256;
     String cipherText = "";
@@ -45,11 +45,9 @@ public class CaesarEncrypter implements Encrypter<Integer> {
       int indexOfCipherLetter = (indexOfPlainLetter + shiftKey) % modulus;
 
       char replaceValue = ((char)(int)indexOfCipherLetter);
-      System.out.println(replaceValue);
       cipherText += replaceValue;
 
     }
-
     return cipherText;
   }
 

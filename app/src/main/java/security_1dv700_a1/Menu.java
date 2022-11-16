@@ -13,12 +13,12 @@ public class Menu {
     System.out.println();
     /* hash.hashString(); */
     System.out.println("\n" + "== Caesar-Cipher Main Menu ==");
-    System.out.println("1 - Encrypt Text - Caesar Cipher");
-    System.out.println("2 - Decrypt Text - Caesar Cipher");
-    System.out.println("3 - Encrypt Text - Transposition Cipher");
-    System.out.println("4 - Decrypt Text - Transposition Cipher");
-    System.out.println("5 - Hash Text");
-    System.out.println("Q - Quit");
+    System.out.println("1. Encrypt Text - Caesar Cipher");
+    System.out.println("2. Decrypt Text - Caesar Cipher");
+    System.out.println("3. Encrypt Text - Transposition Cipher");
+    System.out.println("4. Decrypt Text - Transposition Cipher");
+    System.out.println("5. Hash Text");
+    System.out.println("Q. Quit");
   
     System.out.print("\n" + "Input choice: ");
     String input = scan.nextLine();
@@ -31,23 +31,22 @@ public class Menu {
       
     if (input.equals("1")) {
       int shiftKey = printEnterShiftKeyCaesar();
-      String cipherText = main.runEncrypter(shiftKey);
-      printCipherText(cipherText);
+      main.runCaesarEncrypter(shiftKey);
     }
 
     if (input.equals("2")) {
       int shiftKey = printEnterShiftKeyCaesar();
-       main.runDecrypter(shiftKey);
+       main.runCaesarDecrypter(shiftKey);
     }
 
     if (input.equals("3")) {
       int shiftKey = printEnterKeyTransposition();
-       main.runDecrypter(shiftKey);
+       main.runCaesarDecrypter(shiftKey);
     }
 
     if (input.equals("4")) {
-      int shiftKey = printEnterShiftKeyCaesar();
-       main.runDecrypter(shiftKey);
+      int shiftKey = printEnterKeyTransposition();
+       main.runCaesarDecrypter(shiftKey);
     }
 
 
@@ -80,7 +79,9 @@ public class Menu {
   }
 
   private Boolean validateInput(int number, boolean range) {
-      if(number > 2 && number < 11) {
+      int minKey = 2;
+      int maxKey = 11;
+      if(number > minKey && number < maxKey) {
         return false;
       }
       return true;
@@ -90,9 +91,5 @@ public class Menu {
     System.out.print("Enter Your Message: ");
     String messageToBeHashed = scan.nextLine();
     return messageToBeHashed;
-  }
-
-  private void printCipherText(String cipherText) {
-    System.out.println("\n" + "Encrypted message: " + cipherText + "\n"); 
   }
 }
