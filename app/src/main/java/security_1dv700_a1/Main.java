@@ -1,9 +1,11 @@
 package security_1dv700_a1;
 
-import security_1dv700_a1.caesarCipher.CaesarDecrypter;
-import security_1dv700_a1.caesarCipher.CaesarEncrypter;
 import security_1dv700_a1.caesarCipher.Decrypter;
 import security_1dv700_a1.caesarCipher.Encrypter;
+import security_1dv700_a1.caesarCipher.CaesarDecrypter;
+import security_1dv700_a1.caesarCipher.CaesarEncrypter;
+import security_1dv700_a1.transpositionCipher.TranspositionDecrypter;
+import security_1dv700_a1.transpositionCipher.TranspositionEncrypter;
 import security_1dv700_a1.fileReader.TextReader;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class Main {
 
   Encrypter<Integer> caesarEncrypter = new CaesarEncrypter();
   Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
+  TranspositionEncrypter transEncrypter = new TranspositionEncrypter();
+  TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
 
 /*   public Main() {
     TextReader englishDictionary = new TextReader("/src/main/java/security_1dv700_a1/fileReader/englishWords.txt");
@@ -58,6 +62,23 @@ public class Main {
        shiftKeyDecryption++;
       }
   }
+
+  public void runTranspositionEncrypter(int key) {
+    TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
+    String plainText = notSoSecretMessage.readFromFile().toLowerCase();
+    transEncrypter.runEncrypter(key, plainText);
+  }
+
+  public void runTranspositionDecrypter(int key) {
+    TextReader topSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/topSecretMessage.txt");
+    this.encryptedText = topSecretMessage.readFromFile().toLowerCase();
+    transDecrypter.runTransDecrypter(key, encryptedText);
+  }
+
+
+
+
+
 
 /*   private boolean isWordValid(String sentence) {
     String[] strArray = sentence.split(" ");

@@ -11,8 +11,8 @@ public class Menu {
   
   public void mainMenu() {
     System.out.println();
-    String mess = "Tesss";
-    hash.hashString(mess);
+/*     String mess = "Tesss";
+    hash.hashString(mess); */
     System.out.println("\n" + "== Caesar-Cipher Main Menu ==");
     System.out.println("1. Encrypt Text - Caesar Cipher");
     System.out.println("2. Decrypt Text - Caesar Cipher");
@@ -43,14 +43,13 @@ public class Menu {
 
     if (input.equals("3")) {
       int shiftKey = printEnterKeyTransposition();
-       main.runCaesarDecrypter(shiftKey);
+       main.runTranspositionEncrypter(shiftKey);
     }
 
     if (input.equals("4")) {
       int shiftKey = printEnterKeyTransposition();
-       main.runCaesarDecrypter(shiftKey);
+       main.runTranspositionDecrypter(shiftKey);
     }
-
 
     if (input.equals("5")) {
       String messageToBeHashed = printEnterMessage();
@@ -66,6 +65,7 @@ public class Menu {
   private int printEnterShiftKeyCaesar() {
     System.out.print("Enter Shift Key: ");
     int shiftKey = scan.nextInt();
+    scan.nextLine();
     return shiftKey;
   }
 
@@ -92,7 +92,7 @@ public class Menu {
   
   private String printEnterMessage() {
     System.out.print("Enter Your Message: ");
-    String messageToBeHashed = scan.nextLine();
-    return messageToBeHashed;
+    String message = scan.nextLine();
+    return message;
   }
 }
