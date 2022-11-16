@@ -13,22 +13,15 @@ public class Hash {
 
     for (int i = 0; i < message.length(); i++) {
       char character = message.charAt(i);
-      int ascii = (int) character;
-      
+      int ascii = (int) character;      
       hash += (ascii * (message.length() - i));
     }
+    
       hash = (int)(hash % max);
 
       String hashedString = String.format("%03d", hash);
       return hashedString;
-}
-
-private Boolean isNumberEven(int number) {
-  if(number % 2 == 0) {
-    return true;
   }
-  return false;
-}
 /* private int getNumberFromHashModule (String s) {
   Hashtable<String, Integer> table = new Hashtable<String, Integer>();
   table.put("a", 43);

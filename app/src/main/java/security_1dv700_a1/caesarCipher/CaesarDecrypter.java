@@ -1,5 +1,7 @@
 package security_1dv700_a1.caesarCipher;
 
+import java.util.ArrayList;
+
 public class CaesarDecrypter implements Decrypter<Integer> {
   public static final String ENGLISHALPHABET = "abcdefghijklmnopqrstuvwxyz";
   
@@ -36,6 +38,15 @@ public class CaesarDecrypter implements Decrypter<Integer> {
     return false;
   }
 
+  public ArrayList<String> decryptCipherWithoutKey(int cycles, String encryptedText) {
+      ArrayList<String> decryptedWords = new ArrayList<String>();
+      for (int i = 1; i <= cycles; i++) {
+        decryptedWords.add(decryptCipherText(i, encryptedText));
+      }
+      return decryptedWords;
+  }
+
+
   public String decryptCipherText2(Integer decryptionKey, String cipherText) {
     cipherText = cipherText.toLowerCase();
     int modulus = 256;
@@ -43,9 +54,9 @@ public class CaesarDecrypter implements Decrypter<Integer> {
 
 
     for (int i = 0; i < cipherText.length(); i++) {
-      if (cipherText.charAt(i) == ' ') {
+/*       if (cipherText.charAt(i) == ' ') {
         plainText += " ";
-      } else {
+      } else { */
         int pos = cipherText.charAt(i);
         int keyValue = (pos - decryptionKey) % modulus; // Modulus of difference of alphabet letter and key
 
@@ -55,7 +66,7 @@ public class CaesarDecrypter implements Decrypter<Integer> {
 
         char decryptedLetter = ((char)(int)keyValue);
         plainText += decryptedLetter;
-      }
+/*       } */
     }
     return plainText;
   }

@@ -17,16 +17,10 @@ public class TranspositionEncrypter {
       charMessage.add(extractEachLetterInMessage(plainText, i));
       count++;
     }
-    
-    if((count / key) % 2 != 0) {
-      rows = (count / key) + 1; 
-    } else {
-      rows = (count / key);
-    }
+    rows = (count / key) + 1;
     
     String cipherText = encryptMessage(key, rows, charMessage);
     return cipherText;
-    
   }   
 
   private static Character extractEachLetterInMessage(String plainText, int i) {

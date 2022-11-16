@@ -8,40 +8,29 @@ import security_1dv700_a1.transpositionCipher.TranspositionDecrypter;
 import security_1dv700_a1.transpositionCipher.TranspositionEncrypter;
 import security_1dv700_a1.fileReader.TextReader;
 
-import java.util.ArrayList;
-
 public class Main {
-  String[] engDictionary;
   String encryptedText;
 
   Console console = new Console();
 
   public void runCaesarEncrypter(int shiftKey) {
     Encrypter<Integer> caesarEncrypter = new CaesarEncrypter();
-    TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
-    String plainText = notSoSecretMessage.readFromFile().toLowerCase();
-    int shiftKeyEncryption = shiftKey;
-    
-    String cipherText = caesarEncrypter.encryptPlainText(shiftKeyEncryption, plainText);
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/messageCaesar.txt");
+    String plainText = textReader.readFromFile().toLowerCase();
+    String cipherText = caesarEncrypter.encryptPlainText(shiftKey, plainText);
+
+    textReader.writeToFile(cipherText);
     console.printCaesarEncryptedText(cipherText);
   }
 
   public void runCaesarDecrypter(int key) {
-    TextReader topSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/topSecretMessage.txt");
-    this.encryptedText = topSecretMessage.readFromFile().toLowerCase();
-    int shiftKey = key;
-    ArrayList<String> caesarString = decryptCipherText(shiftKey, this.encryptedText);
-    
-    console.printCaesarDecryptedText(caesarString);
-  }
-
-  private ArrayList<String> decryptCipherText(int cycles, String encodedText) {
     Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
-    ArrayList<String> decryptedWords = new ArrayList<String>();
-    for (int i = 1; i <= cycles; i++) {
-      decryptedWords.add(caesarDecrypter.decryptCipherText(i, encodedText));
-    }
-    return decryptedWords;
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/messageCaesar.txt");
+    String encryptedText = textReader.readFromFile().toLowerCase(); 
+    String decryptedText = caesarDecrypter.decryptCipherText(key, encryptedText);
+
+    textReader.writeToFile(decryptedText);
+    console.printCaesarDecryptedText(decryptedText);
   }
 
   public void runTranspositionEncrypter(int key) {
@@ -52,18 +41,20 @@ public class Main {
     
     textReader.writeToFile(cipherText);
     console.printTranspositionEncryptedText(cipherText);
-    runTranspositionDecrypter(key, cipherText);
-
   }
 
-  public void runTranspositionDecrypter(int key, String text) {
+  public void runTranspositionDecrypter(int key) {
     TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
     TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
-    this.encryptedText = textReader.readFromFile().toLowerCase();
-    String decryptedMessage = transDecrypter.runTransDecrypter(key, text);
+    String encryptedText = textReader.readFromFile().toLowerCase();
+    String decryptedMessage = transDecrypter.runTransDecrypter(key, encryptedText);
     
     textReader.writeToFile(decryptedMessage);
     console.printTranspositionDecryptedText(decryptedMessage);
+  }
+
+  private void writeToFile(String text) {
+
   }
 
 

@@ -1,12 +1,14 @@
 package security_1dv700_a1.hash;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.HashMap;
+import java.util.ArrayList;
+import security_1dv700_a1.Console;
 
 public class HashTester {
   Hash hasher = new Hash();
+  Console console = new Console();
 
   public void testWithSimilarString(String message) {
     ArrayList<String> result = new ArrayList<String>();
@@ -21,8 +23,8 @@ public class HashTester {
     }
    Map<String, Integer> resultOfSpreadability = countSpreadOfTestedHashes(result);
    HashMap<String, Integer> resultOfUniqueHashes = countUniqueHashes(result);
-   printSimilarStringResult(resultOfSpreadability, numberOfStrings);
-   printOnlyUniqueHashes(resultOfUniqueHashes);
+   console.printSimilarStringResult(resultOfSpreadability, numberOfStrings);
+   console.printOnlyUniqueHashes(resultOfUniqueHashes);
   }
 
   public void validateHashLength() {
@@ -41,7 +43,7 @@ public class HashTester {
       }
       numberOfStrings++;
     }
-    printValidateHashLengthResult(numberOfErrors, numberOfStrings);
+    console.printValidateHashLengthResult(numberOfErrors, numberOfStrings);
   }
 
   private String generateRandomString () {
@@ -75,26 +77,6 @@ public class HashTester {
       uniqueHashes.put(result.get(i), i);
     }
     return uniqueHashes;
-  }
-
-  private void printSimilarStringResult(Map<String, Integer> map, int numberOfStrings) {
-    System.out.println("------Hash Spread among Similar Strings Result -----");
-    System.out.println("Number of similar strings used: " + numberOfStrings);
-    System.out.println("Hashes generated: ");
-      // https://stackoverflow.com/questions/109383/sort-a-mapkey-value-by-values - Tips and inspiration
-    map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println); // instead of numbers.forEach(x -> System.out.println(x));
-  }
-
-  private void printValidateHashLengthResult(int numberOfErrors, int numberOfStrings) {
-    System.out.println("\n------Hash Length Validation Result-----");
-    System.out.println("Number of random strings used: " + numberOfStrings);
-    System.out.println("Number of hash outside range 000 - 256: " + numberOfErrors);
-  }
-
-  private void printOnlyUniqueHashes(HashMap<String, Integer> uniqueHashes) {
-    System.out.println("\n------Unique Hashes Result -----");
-    System.out.println("Number of unique Hashes: " + uniqueHashes.size());
-    System.out.println(uniqueHashes.keySet());
   }
 }
 
