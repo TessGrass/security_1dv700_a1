@@ -14,18 +14,10 @@ public class Main {
   String[] engDictionary;
   String encryptedText;
 
-  Encrypter<Integer> caesarEncrypter = new CaesarEncrypter();
-  Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
-  TranspositionEncrypter transEncrypter = new TranspositionEncrypter();
-  TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
   Console console = new Console();
 
-/*   public Main() {
-    TextReader englishDictionary = new TextReader("/src/main/java/security_1dv700_a1/fileReader/englishWords.txt");
-    this.engDictionary = englishDictionary.readFromFile().split("\n");
-  } */
-
   public void runCaesarEncrypter(int shiftKey) {
+    Encrypter<Integer> caesarEncrypter = new CaesarEncrypter();
     TextReader notSoSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/notSoSecretMessage.txt");
     String plainText = notSoSecretMessage.readFromFile().toLowerCase();
     int shiftKeyEncryption = shiftKey;
@@ -34,20 +26,17 @@ public class Main {
     console.printCaesarEncryptedText(cipherText);
   }
 
-  private void printCipherText(String cipherText) {
-    System.out.println("\n" + "Encrypted message: " + "\n" + cipherText + "\n"); 
-  }
-
-  public void runCaesarDecrypter(int rotation) {
+  public void runCaesarDecrypter(int key) {
     TextReader topSecretMessage = new TextReader("/src/main/java/security_1dv700_a1/fileReader/topSecretMessage.txt");
     this.encryptedText = topSecretMessage.readFromFile().toLowerCase();
-    int shiftKey = rotation;
+    int shiftKey = key;
     ArrayList<String> caesarString = decryptCipherText(shiftKey, this.encryptedText);
     
     console.printCaesarDecryptedText(caesarString);
   }
 
   private ArrayList<String> decryptCipherText(int cycles, String encodedText) {
+    Decrypter<Integer> caesarDecrypter = new CaesarDecrypter();
     ArrayList<String> decryptedWords = new ArrayList<String>();
     for (int i = 1; i <= cycles; i++) {
       decryptedWords.add(caesarDecrypter.decryptCipherText(i, encodedText));
@@ -55,19 +44,12 @@ public class Main {
     return decryptedWords;
   }
 
-  private void printDecryptedText(ArrayList<String> decryptedText) {
-    int shiftKeyDecryption = 1;
-
-    for (String s : decryptedText) {
-      System.out.println("\nKey " + shiftKeyDecryption + ":\n" + s);
-       shiftKeyDecryption++;
-      }
-  }
-
   public void runTranspositionEncrypter(int key) {
+    TranspositionEncrypter transEncrypter = new TranspositionEncrypter();
     TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
     String plainText = textReader.readFromFile().toLowerCase();
     String cipherText = transEncrypter.runEncrypter(key, plainText);
+    
     textReader.writeToFile(cipherText);
     console.printTranspositionEncryptedText(cipherText);
     runTranspositionDecrypter(key, cipherText);
@@ -75,9 +57,11 @@ public class Main {
   }
 
   public void runTranspositionDecrypter(int key, String text) {
+    TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
     TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
     this.encryptedText = textReader.readFromFile().toLowerCase();
     String decryptedMessage = transDecrypter.runTransDecrypter(key, text);
+    
     textReader.writeToFile(decryptedMessage);
     console.printTranspositionDecryptedText(decryptedMessage);
   }
