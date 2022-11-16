@@ -57,7 +57,7 @@ public class Menu {
     }
 
     if (input.equals("6")) {
-      String message = "tess";
+      String message = "Testing the hash string!";
       hashTester.similarString(message);
     }
 }
