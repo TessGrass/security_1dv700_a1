@@ -14,7 +14,7 @@ public class HashTester {
     ArrayList<String> result = new ArrayList<String>();
     String sentence = message;
     String letter = "a";
-    int numberOfStrings = 2000;
+    int numberOfStrings = 3000;
 
     for (int i = 0; i < numberOfStrings; i++) {
       sentence += letter;

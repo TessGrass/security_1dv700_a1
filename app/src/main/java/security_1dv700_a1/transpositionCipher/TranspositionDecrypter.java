@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TranspositionDecrypter {
 
-  public String runTransDecrypter(int key, String secretMessage) {
+  public String runDecrypter(int key, String secretMessage) {
     ArrayList<Character> messageArr = new ArrayList<Character>();
     String cipherText = secretMessage;
     int columns = key;

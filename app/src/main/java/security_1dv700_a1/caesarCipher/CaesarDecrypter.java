@@ -38,12 +38,13 @@ public class CaesarDecrypter implements Decrypter<Integer> {
     return false;
   }
 
-  public ArrayList<String> decryptCipherWithoutKey(int cycles, String encryptedText) {
+  public void decryptCipherWithoutKey(int cycles, String encryptedText) {
       ArrayList<String> decryptedWords = new ArrayList<String>();
       for (int i = 1; i <= cycles; i++) {
         decryptedWords.add(decryptCipherText(i, encryptedText));
+        System.out.println(decryptedWords);
       }
-      return decryptedWords;
+/*       return decryptedWords; */
   }
 
 

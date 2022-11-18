@@ -35,7 +35,7 @@ public class Main {
 
   public void runTranspositionEncrypter(int key) {
     TranspositionEncrypter transEncrypter = new TranspositionEncrypter();
-    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/messageTrans.txt");
     String plainText = textReader.readFromFile().toLowerCase();
     String cipherText = transEncrypter.runEncrypter(key, plainText);
     
@@ -45,9 +45,9 @@ public class Main {
 
   public void runTranspositionDecrypter(int key) {
     TranspositionDecrypter transDecrypter = new TranspositionDecrypter();
-    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/message.txt");
+    TextReader textReader = new TextReader("/src/main/java/security_1dv700_a1/fileReader/messageTrans.txt");
     String encryptedText = textReader.readFromFile().toLowerCase();
-    String decryptedMessage = transDecrypter.runTransDecrypter(key, encryptedText);
+    String decryptedMessage = transDecrypter.runDecrypter(key, encryptedText);
     
     textReader.writeToFile(decryptedMessage);
     console.printTranspositionDecryptedText(decryptedMessage);

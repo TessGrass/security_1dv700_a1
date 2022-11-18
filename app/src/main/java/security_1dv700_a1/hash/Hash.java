@@ -16,33 +16,10 @@ public class Hash {
       int ascii = (int) character;      
       hash += (ascii * (message.length() - i));
     }
-    
-      hash = (int)(hash % max);
 
-      String hashedString = String.format("%03d", hash);
-      return hashedString;
+    hash = (int)(hash % max);
+
+    String hashedString = String.format("%03d", hash);
+    return hashedString;
   }
-/* private int getNumberFromHashModule (String s) {
-  Hashtable<String, Integer> table = new Hashtable<String, Integer>();
-  table.put("a", 43);
-  table.put("b", 230);
-  table.put("f", 2);
-  table.put("r", 64);
-  table.put("c", 125);
-  table.put("v", 92);
-  table.put("t", 23);
-  table.put("n", 120);
-  table.put("p", 5);
-  table.put("s", 84);
-  table.put("g", 33);
-
-  int res = (int) s;
-  if (table.containsKey(s)) {
-    int value = table.get(s);
-    res = value;
-  }
-
-  return res;
-} */
-
 }
