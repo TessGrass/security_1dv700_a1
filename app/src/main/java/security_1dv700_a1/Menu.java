@@ -17,12 +17,14 @@ public class Menu {
       
     if (input.equals("1")) {
       int shiftKey = console.printEnterShiftKeyCaesar();
-      main.runCaesarEncrypter(shiftKey);
+      String path = console.printEnterSearchPath();
+      main.runCaesarEncrypter(shiftKey, path);
     }
 
     if (input.equals("2")) {
       int shiftKey = console.printEnterShiftKeyCaesar();
-       main.runCaesarDecrypter(shiftKey);
+      String path = console.printEnterSearchPath();
+      main.runCaesarDecrypter(shiftKey, path);
     }
 
     if (input.equals("3")) {
@@ -30,14 +32,16 @@ public class Menu {
       Boolean isNumberWithinRange = false;
 
       while (!isNumberWithinRange) {
-      isNumberWithinRange = validateInput(shiftKey);
+      isNumberWithinRange = validateNumberRange(shiftKey);
       }
-       main.runTranspositionEncrypter(shiftKey);
+      String path = console.printEnterSearchPath();
+      main.runTranspositionEncrypter(shiftKey, path);
     }
 
     if (input.equals("4")) {
       int shiftKey = console.printEnterKeyTransposition();
-       main.runTranspositionDecrypter(shiftKey);
+      String path = console.printEnterSearchPath();
+      main.runTranspositionDecrypter(shiftKey, path);
     }
 
     if (input.equals("5")) {
@@ -50,9 +54,15 @@ public class Menu {
       String message = "Testing the hash string!";
       hashTester.testWithSimilarString(message);
     }
+
+    if (input.equals("7")) {
+      int shiftKey = console.printEnterNumberOfCycles();
+      String path = console.printEnterSearchPath();
+      main.runDecryptCipherWithoutSpecificKey(shiftKey, path);
+    }
 }
   
-  private Boolean validateInput(int number) {
+  private Boolean validateNumberRange(int number) {
     int minKey = 2;
     int maxKey = 11;
     if(number > minKey && number < maxKey) {

@@ -7,7 +7,6 @@ public class Console {
   Scanner scan = new Scanner(System.in, "utf-8");
 
   public String printMenu() {
-    System.out.println();
     System.out.println("\n" + "== Caesar-Cipher Main Menu ==");
     System.out.println("1. Encrypt Text - Caesar Cipher");
     System.out.println("2. Decrypt Text - Caesar Cipher");
@@ -15,7 +14,7 @@ public class Console {
     System.out.println("4. Decrypt Text - Transposition Cipher");
     System.out.println("5. Hash Text");
     System.out.println("6. Test Hash");
-    System.out.println("Q. Quit");
+    System.out.println("7. Bonus: Decrypt Text Without Known Key - Caesar");
   
     System.out.print("\n" + "Input choice: ");
     String input = scan.nextLine();
@@ -24,16 +23,47 @@ public class Console {
   }
 
   public int printEnterShiftKeyCaesar() {
+    int key = 0;
+    try {
     System.out.print("Enter Shift Key: ");
-    int shiftKey = scan.nextInt();
-    scan.nextLine();
-    return shiftKey;
+    String shiftKey = scan.nextLine();
+    key = Integer.parseInt(shiftKey);
+    } catch (NumberFormatException nfe) {
+      System.out.println("Please enter a valid number");
+      printEnterShiftKeyCaesar();
+    }
+    return key;
+  }
+
+  public int printEnterNumberOfCycles() {
+    int key = 0;
+    try {
+    System.out.println("You don't have a known key? No problem! Let's try them all at once!");
+    System.out.println("We'll start with key 1 and cycle through each key until we reach your end key.");
+    System.out.println("(This is will only read, not write, anything to file. It's just a little bonus functionality)");
+    System.out.println();
+    System.out.print("Enter End Key: ");
+    String shiftKey = scan.nextLine();
+    key = Integer.parseInt(shiftKey);
+    } catch (NumberFormatException nfe) {
+      System.out.println("Please enter a valid number");
+      printEnterNumberOfCycles();
+
+    }
+    return key;
   }
 
   public int printEnterKeyTransposition() {
+    int key = 0;
+    try {
     System.out.print("Enter Key (between 3-10): ");
-    int shiftKey = scan.nextInt();
-    return shiftKey;
+    String shiftKey = scan.nextLine();
+    key = Integer.parseInt(shiftKey);
+    } catch (NumberFormatException nfe) {
+      System.out.println("Please enter a valid number");
+      printEnterKeyTransposition();
+    }
+    return key;
   }
 
   public String printEnterMessage() {
@@ -42,12 +72,24 @@ public class Console {
     return message;
   }
 
+  public String printEnterSearchPath() {
+    System.out.println("Enter the path to your textfile. The path must start with /src/" + "\nFor example: /src/main/java/security_1dv700_a1/fileReader/messageCaesar.txt");
+    System.out.print("Enter Your Path: ");
+    String path = scan.nextLine();
+    return path;
+  }
+
   public void printCaesarEncryptedText(String cipherText) {
     System.out.println("\n" + "Encrypted message: " + "\n" + cipherText + "\n"); 
   }
 
   public void printCaesarDecryptedText(String decryptedText) {
     System.out.println(decryptedText);
+  }
+
+  public void printBruteForcedText(int key, String text) {
+    System.out.println("Key used: " + key);
+    System.out.println(text + "\n");
   }
 
   public void printTranspositionEncryptedText(String cipherText) {

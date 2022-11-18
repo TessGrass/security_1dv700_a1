@@ -32,19 +32,4 @@ public class CaesarEncrypter implements Encrypter<Integer> {
     }
     return false;
   }
-
-  public String encryptPlainText2(Integer shiftKey, String plainText) {
-    plainText = plainText.toLowerCase();
-    int modulus = 256;
-    String cipherText = "";
-
-    for (int i = 0; i < plainText.length() - 1; i++) {
-      int indexOfPlainLetter = plainText.charAt(i);
-      int indexOfCipherLetter = (indexOfPlainLetter + shiftKey) % modulus;
-      char replaceValue = ((char)(int)indexOfCipherLetter);
-
-      cipherText += replaceValue;
-    }
-    return cipherText;
-  }
 }
