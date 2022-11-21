@@ -60,23 +60,5 @@ public class Main {
       console.printBruteForcedText(i, text);
     }
 }
-
-
-
-
-
-
-
-/*   private boolean isWordValid(String sentence) {
-    String[] strArray = sentence.split(" ");
-    for (String s : strArray) {
-      for (String w : engDictionary) {
-           if (w.equals(s)) {
-            return true;
-           }
-       }
-  }
-  return false;
-} */
 }
 

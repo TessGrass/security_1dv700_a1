@@ -1,7 +1,5 @@
 package security_1dv700_a1.hash;
 
-import java.util.Hashtable;
-
 public class Hash {
   int test = 0;
   int numberOfErrors = 0;

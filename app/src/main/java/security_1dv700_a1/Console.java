@@ -112,7 +112,6 @@ public class Console {
     System.out.println("------Hash Spread among Similar Strings Result -----");
     System.out.println("Number of similar strings used: " + numberOfStrings);
     System.out.println("Hashes generated: ");
-      // https://stackoverflow.com/questions/109383/sort-a-mapkey-value-by-values - Tips and inspiration
     map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println); // instead of numbers.forEach(x -> System.out.println(x));
   }
 

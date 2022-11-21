@@ -52,7 +52,9 @@ public class Menu {
 
     if (input.equals("6")) {
       String message = "Testing the hash string!";
-      hashTester.testWithSimilarString(message);
+      hashTester.addLetterToString(message);
+/*       hashTester.changeLetterInString(); */
+/*         hashTester.validateHashLength(); */
     }
 
     if (input.equals("7")) {
